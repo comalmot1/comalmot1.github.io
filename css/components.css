@@ -163,11 +163,14 @@
 
 .tip-figure {
   margin: 0 0 16px;
+  text-align: center;
 }
 .tip-figure img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
-  display: block;
+  display: inline-block;
   background: var(--border);
 }
 .tip-figure figcaption {
