@@ -47,6 +47,11 @@ function renderBlock(block) {
   if (block.type === 'code') {
     return `<pre class="tip-code">${esc(block.text)}</pre>`;
   }
+  if (block.type === 'table') {
+    const head = `<tr>${block.headers.map((h) => `<th>${esc(h)}</th>`).join('')}</tr>`;
+    const body = block.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join('')}</tr>`).join('');
+    return `<div class="tip-table-wrap"><table class="tip-table"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
+  }
   return `<p>${esc(block.text)}</p>`;
 }
 
