@@ -201,6 +201,7 @@ export const tips = [
     thumbnail: placeholderThumb(4),
     body: [
       { type: 'paragraph', text: '오디오 설정에서 "향상 기능(Enhancements)" 또는 "음향 효과" 탭이 아예 안 보이는 경우가 있습니다. 이럴 땐 오픈소스 스크립트로 라우드니스 이퀄라이제이션 기능을 직접 활성화할 수 있습니다. 명령어가 낯설어 보여도 그대로 복사·붙여넣기만 하면 되니 순서대로 따라오세요.' },
+      { type: 'image', src: 'images/tips/gamer5-powershell-admin.png', caption: '관리자 권한으로 실행된 PowerShell 창 — 이 화면이 뜨면 제대로 실행된 것입니다' },
       { type: 'steps', items: [
         '윈도우 하단 검색(돋보기) 버튼을 누르고 "Windows PowerShell" 입력',
         '검색 결과에서 마우스 우클릭 → "관리자 권한으로 실행" 클릭',
