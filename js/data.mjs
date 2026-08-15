@@ -37,9 +37,9 @@ export const tips = [
         '키보드에서 윈도우 키를 누르고 "Windows Update"라고 입력한 뒤 엔터',
         '"업데이트 확인" 버튼을 눌러서 대기 중인 업데이트가 있으면 전부 설치',
         '그래픽카드 드라이버는 제조사 사이트에서 받으세요 — NVIDIA는 nvidia.com/drivers, AMD는 amd.com/support, Intel은 intel.com/content/www/kr/ko/support 에서 본인 그래픽카드 모델명을 검색',
-        '메인보드 모델명은 설정 > 시스템 > 정보에서 확인 가능하며, 오디오·랜(LAN) 드라이버는 반드시 이 메인보드 제조사(ASUS, MSI, 기가바이트 등) 홈페이지에서 받아 설치하세요',
+        '메인보드 모델명은 윈도우 키를 누르고 "시스템 정보"를 검색해서 실행한 뒤 "시스템 모델" 항목에서 확인 가능하며, 오디오·랜(LAN) 드라이버는 반드시 이 메인보드 제조사(ASUS, MSI, 기가바이트 등) 홈페이지에서 받아 설치하세요',
       ] },
-      { type: 'image', src: placeholderImage('설정 > 시스템 > 정보 — 메인보드 모델명 확인 위치'), caption: '설정 > 시스템 > 정보 — 메인보드 모델명 확인 위치' },
+      { type: 'image', src: placeholderImage('시스템 정보 — 시스템 모델(메인보드) 확인 위치'), caption: '시스템 정보 — 시스템 모델(메인보드) 확인 위치' },
       { type: 'paragraph', text: '② 윈도우 11 게임 설정을 한 번 훑어보세요.' },
       { type: 'steps', items: [
         '윈도우 키를 누르고 "게임 설정"이라고 입력 후 엔터 (또는 설정 앱 > 게임)',
