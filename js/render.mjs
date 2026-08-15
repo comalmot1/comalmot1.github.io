@@ -37,12 +37,24 @@ export function renderTipGrid(el, tips) {
   el.innerHTML = `<div class="tip-grid">${tips.map(tipCardHtml).join('')}</div>`;
 }
 
+function renderBlock(block) {
+  if (block.type === 'steps') {
+    return `<ol class="tip-steps">${block.items.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>`;
+  }
+  if (block.type === 'image') {
+    return `<figure class="tip-figure"><img src="${block.src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
+  }
+  return `<p>${esc(block.text)}</p>`;
+}
+
 export function renderTipDetail(el, tip, allTips) {
   const related = allTips.filter((t) => t.category === tip.category && t.id !== tip.id).slice(0, 3);
-  // 스펙 7절: ad-in-article은 2~3번째 문단 "직후"에 오고, 그 뒤에 나머지 본문이 이어진 다음 ad-bottom이 온다.
-  // 더미 데이터는 문단이 3개뿐이므로 2문단 후에 자르고, 남은 1문단을 "나머지 본문"으로 둔다.
-  const beforeAd = tip.body.slice(0, 2).map((block) => `<p>${esc(block.text)}</p>`).join('');
-  const afterAd = tip.body.slice(2).map((block) => `<p>${esc(block.text)}</p>`).join('');
+  // 스펙 7절: ad-in-article은 본문 초반부 직후, ad-bottom은 본문 끝에 온다.
+  // 본문 블록 수가 콘텐츠마다 다르므로(문단/단계목록/이미지 혼합), 전체의 약 40% 지점에서
+  // 블록 단위로 나눈다 — 블록 중간을 자르지 않고, 앞뒤 모두 최소 1개 블록은 남도록 보장한다.
+  const splitIndex = Math.max(1, Math.min(tip.body.length - 1, Math.ceil(tip.body.length * 0.4)));
+  const beforeAd = tip.body.slice(0, splitIndex).map(renderBlock).join('');
+  const afterAd = tip.body.slice(splitIndex).map(renderBlock).join('');
 
   el.innerHTML = `
     <article class="tip-detail">

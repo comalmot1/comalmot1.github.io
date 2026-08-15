@@ -124,3 +124,55 @@
 .empty-state p {
   margin-bottom: 16px;
 }
+
+.tip-steps {
+  margin: 0 0 16px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: tip-step;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 16px;
+}
+.tip-steps li {
+  counter-increment: tip-step;
+  position: relative;
+  padding: 10px 0 10px 32px;
+  line-height: 1.6;
+}
+.tip-steps li + li {
+  border-top: 1px solid var(--border);
+}
+.tip-steps li::before {
+  content: counter(tip-step);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip-figure {
+  margin: 0 0 16px;
+}
+.tip-figure img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  background: var(--border);
+}
+.tip-figure figcaption {
+  font-size: 13px;
+  color: var(--sub);
+  margin-top: 6px;
+  text-align: center;
+}
