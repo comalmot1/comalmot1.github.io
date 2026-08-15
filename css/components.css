@@ -207,7 +207,6 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  white-space: nowrap;
 }
 .tip-table th,
 .tip-table td {
@@ -249,7 +248,7 @@
 .tip-callout p {
   margin: 0;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.6;
   color: var(--primary-dark);
 }
