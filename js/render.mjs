@@ -59,3 +59,13 @@ export function renderTipDetail(el, tip, allTips) {
     </article>
   `;
 }
+
+export function renderEmptyState(el, keyword, onReset) {
+  el.innerHTML = `
+    <div class="empty-state">
+      <p>"${keyword}"에 대한 조건에 맞는 팁이 없어요</p>
+      <button class="btn" id="reset-search-btn" type="button">검색어 초기화</button>
+    </div>
+  `;
+  document.getElementById('reset-search-btn').addEventListener('click', onReset);
+}
