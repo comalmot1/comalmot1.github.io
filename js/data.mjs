@@ -120,9 +120,14 @@ export const tips = [
       { type: 'paragraph', text: '평소 블랙스크린으로 갑자기 꺼지는 증상이 자주 있었다면, 메모리 불량일 가능성도 의심해볼 만합니다.' },
       { type: 'image', src: 'images/tips/gamer2-ram-check.png', caption: '작업 관리자 > 메모리 — 슬롯/속도 확인 화면' },
       { type: 'paragraph', text: '⑥ 특정 부품이 아니라 전체적으로 온도가 다 높게 나온다면, 시스템 크기에 비해 케이스가 너무 작거나, 케이스 팬이 불량이거나 제대로 연결이 안 됐을 가능성도 확인해보면 좋습니다.' },
+      { type: 'paragraph', text: '덤으로 하나 더 — 디스코드 인게임 오버레이나 Xbox Game Bar 같은 백그라운드 오버레이가 켜져 있으면, 특히 사양이 낮은 PC에서는 프레임드랍의 원인이 될 수 있습니다. 평소에 잘 안 쓰신다면 꺼두는 것도 확인해보세요.' },
+      { type: 'steps', items: [
+        '디스코드: 좌측 하단 톱니바퀴(사용자 설정) → "게임 오버레이" → "활성화" 스위치를 꺼짐으로 변경',
+        'Xbox Game Bar: 윈도우 키 → "설정" 실행 → "게임" → "Xbox Game Bar" → "Xbox Game Bar를 사용하여 게임 클립, 스크린샷 및 방송 녹화" 스위치를 꺼짐으로 변경',
+      ] },
       { type: 'paragraph', text: '⑦ 여기까지 해봐도 원인을 못 찾겠다면, 수리점에 한번 들러보는 것도 추천합니다. 특히 파워서플라이나 메인보드 문제는 전문 지식이 없으면 직접 확인할 방법이 마땅치 않은 경우가 많습니다.' },
     ],
-    tags: ['프레임드랍', '자가진단', 'CPU온도', 'GPU온도'],
+    tags: ['프레임드랍', '자가진단', 'CPU온도', 'GPU온도', '오버레이'],
     date: '2026-08-15',
   },
   {
@@ -209,32 +214,5 @@ export const tips = [
     ],
     tags: ['오디오', 'Enhancements', 'PowerShell'],
     date: '2026-08-12',
-  },
-  {
-    id: 'gamer-tips-6',
-    category: 'gamer-tips',
-    title: '게임 중 오버레이 끄기',
-    summary: '디스코드·Xbox Game Bar 같은 백그라운드 오버레이가 프레임드랍의 숨은 원인일 수 있습니다.',
-    thumbnail: placeholderThumb(5),
-    body: [
-      { type: 'paragraph', text: '디스코드 인게임 오버레이나 Xbox Game Bar 같은 백그라운드 오버레이가 켜져 있으면, 특히 사양이 낮은 PC에서는 프레임드랍의 원인이 될 수 있습니다. 평소에 잘 안 쓴다면 아예 꺼두는 걸 추천합니다.' },
-      { type: 'paragraph', text: '① 디스코드 오버레이 끄기' },
-      { type: 'steps', items: [
-        '디스코드 실행 → 좌측 하단 톱니바퀴(사용자 설정) 클릭',
-        '왼쪽 메뉴에서 "게임 오버레이" 클릭',
-        '상단 "활성화" 스위치를 꺼짐으로 변경',
-      ] },
-      { type: 'image', src: placeholderImage('디스코드 설정 > 게임 오버레이'), caption: '디스코드 설정 > 게임 오버레이' },
-      { type: 'paragraph', text: '② Xbox Game Bar 끄기' },
-      { type: 'steps', items: [
-        '윈도우 키 → "설정" 실행 (또는 Win+I)',
-        '"게임" 클릭 → "Xbox Game Bar" 클릭',
-        '"Xbox Game Bar를 사용하여 게임 클립, 스크린샷 및 방송 녹화" 스위치를 꺼짐으로 변경',
-      ] },
-      { type: 'image', src: placeholderImage('설정 > 게임 > Xbox Game Bar'), caption: '설정 > 게임 > Xbox Game Bar' },
-      { type: 'paragraph', text: '필요할 때만 그때그때 다시 켜서 쓰는 것도 방법입니다.' },
-    ],
-    tags: ['오버레이', '디스코드', 'Xbox Game Bar'],
-    date: '2026-08-11',
   },
 ];
