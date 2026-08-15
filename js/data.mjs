@@ -1,9 +1,46 @@
-function placeholderThumb(index) {
-  const palette = ['#DBEAFE', '#DCFCE7', '#FEF3C7', '#FCE7F3', '#E0E7FF', '#FFE4E6'];
+function escapeXml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
+}
+
+function wrapTitle(text, maxCharsPerLine) {
+  const words = text.split(' ');
+  const lines = [];
+  let current = '';
+  const pushCurrent = () => { if (current) { lines.push(current); current = ''; } };
+  for (const word of words) {
+    if (word.length > maxCharsPerLine) {
+      pushCurrent();
+      for (let i = 0; i < word.length; i += maxCharsPerLine) {
+        lines.push(word.slice(i, i + maxCharsPerLine));
+      }
+      continue;
+    }
+    const candidate = current ? current + ' ' + word : word;
+    if (candidate.length > maxCharsPerLine && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+  }
+  pushCurrent();
+  return lines;
+}
+
+function placeholderThumb(index, title) {
+  const palette = ['#DBEAFE', '#DCFCE7', '#FEF3C7', '#FCE7F3', '#E0E7FF', '#FFE4E6', '#E0F2FE'];
   const color = palette[index % palette.length];
+  const fontSize = 26;
+  const lineHeight = 32;
+  const lines = wrapTitle(title, 11).slice(0, 4);
+  const startY = 120 - ((lines.length - 1) * lineHeight) / 2 + 8;
+  const textEls = lines.map((line, i) =>
+    `<text x="200" y="${startY + i * lineHeight}" font-family="Inter,sans-serif" font-size="${fontSize}" font-weight="800" fill="#1B64DA" text-anchor="middle">${escapeXml(line)}</text>`
+  ).join('');
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240">` +
     `<rect width="400" height="240" fill="${color}"/>` +
-    `<text x="200" y="130" font-family="Inter,sans-serif" font-size="32" font-weight="800" fill="#1B64DA" text-anchor="middle">TIP ${index + 1}</text>` +
+    textEls +
     `</svg>`;
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
@@ -30,7 +67,7 @@ export const tips = [
     category: 'gamer-tips',
     title: '게임 시작 전 PC 설정 총집합',
     summary: '게임을 켜기 전에 딱 한 번만 점검해두면 계속 도움이 되는 드라이버·윈도우 설정 체크리스트.',
-    thumbnail: placeholderThumb(0),
+    thumbnail: placeholderThumb(0, '게임 시작 전 PC 설정 총집합'),
     body: [
       { type: 'paragraph', text: '게임을 시작하기 전에 딱 한 번만 점검해두면 계속 도움이 되는 설정들을 모았습니다. 무슨 뜻인지 몰라도 괜찮으니, 아래 순서대로 그대로 따라오시면 됩니다.' },
       { type: 'paragraph', text: '① 윈도우 업데이트와 그래픽 드라이버부터 최신으로 맞추세요.' },
@@ -85,7 +122,7 @@ export const tips = [
     category: 'gamer-tips',
     title: '프레임드랍 원인 자가진단법',
     summary: '전문 지식 없이 무료 프로그램만으로 내 PC에 어떤 문제가 있는지 스스로 좁혀보는 방법.',
-    thumbnail: placeholderThumb(1),
+    thumbnail: placeholderThumb(1, '프레임드랍 원인 자가진단법'),
     body: [
       { type: 'paragraph', text: '"PC에 문제가 있는 것 같긴 한데 정확히 뭐가 문제인지는 모르겠고, 별거 아닐 수도 있는데 대뜸 수리점부터 가기엔 부담스럽다" — 이런 분들을 위한 자가진단법입니다. 특별한 지식 없이 간단한 무료 프로그램만 따라서 켜보면 됩니다. 다만 변수는 늘 존재하고, 특히 소프트웨어가 아니라 하드웨어 자체의 문제라면 결국 전문가에게 맡기는 게 나을 수 있다는 점은 미리 알아두세요.' },
       { type: 'paragraph', text: '① 평소 하시는 게임을 켠 상태에서 리소스 사용률부터 확인하세요.' },
@@ -136,7 +173,7 @@ export const tips = [
     category: 'gamer-tips',
     title: '가격이 미쳐버린 램, 용량 부족 응급처치',
     summary: '당장 램을 못 사는 상황에서 소프트웨어적으로 메모리를 짜내는 방법들.',
-    thumbnail: placeholderThumb(2),
+    thumbnail: placeholderThumb(2, '가격이 미쳐버린 램, 용량 부족 응급처치'),
     body: [
       { type: 'paragraph', text: '램 가격이 너무 올라서 당장 추가 구매가 부담스럽다면, 먼저 소프트웨어적으로 짜낼 수 있는 만큼 짜내보세요.' },
       { type: 'paragraph', text: '① 크롬의 메모리 절약 모드를 켜세요.' },
@@ -177,7 +214,7 @@ export const tips = [
     category: 'gamer-tips',
     title: '인터넷 느릴 때 DNS 바꾸는 법',
     summary: '브라우저만이 아니라 PC 전체가 느리다면 네트워크 어댑터에서 DNS를 직접 바꿔보세요. 1분이면 됩니다.',
-    thumbnail: placeholderThumb(3),
+    thumbnail: placeholderThumb(3, '인터넷 느릴 때 DNS 바꾸는 법'),
     body: [
       { type: 'paragraph', text: '인터넷이 유난히 느리거나 사이트 로딩이 오래 걸린다면 DNS 서버 문제일 수 있습니다. 아래 방법은 특정 브라우저가 아니라 PC 전체 인터넷 연결에 적용됩니다.' },
       { type: 'steps', items: [
@@ -199,7 +236,7 @@ export const tips = [
     category: 'gamer-tips',
     title: '오디오 고급기능(Enhancements)이 안 보일 때',
     summary: '사운드 설정에 "향상 기능" 탭 자체가 없을 때, 스크립트로 라우드니스 이퀄라이제이션을 직접 켜는 방법.',
-    thumbnail: placeholderThumb(4),
+    thumbnail: placeholderThumb(4, '오디오 고급기능(Enhancements)이 안 보일 때'),
     body: [
       { type: 'paragraph', text: '오디오 설정에서 "향상 기능(Enhancements)" 또는 "음향 효과" 탭이 아예 안 보이는 경우가 있습니다. 이럴 땐 오픈소스 스크립트로 라우드니스 이퀄라이제이션 기능을 직접 활성화할 수 있습니다. 명령어가 낯설어 보여도 그대로 복사·붙여넣기만 하면 되니 순서대로 따라오세요.' },
       { type: 'image', src: 'images/tips/gamer5-powershell-admin.png', caption: '관리자 권한으로 실행된 PowerShell 창 — 이 화면이 뜨면 제대로 실행된 것입니다' },
@@ -222,7 +259,7 @@ export const tips = [
     category: 'misc-tips',
     title: '백신 프로그램, 굳이 따로 안 깔아도 되는 이유',
     summary: '윈도우에 기본 내장된 Microsoft Defender만으로 충분한 이유와, 오히려 다른 백신이 불편할 수 있는 이유.',
-    thumbnail: placeholderThumb(5),
+    thumbnail: placeholderThumb(5, '백신 프로그램, 굳이 따로 안 깔아도 되는 이유'),
     body: [
       { type: 'paragraph', text: 'PC를 사면 "백신 프로그램부터 따로 깔아야 하나?" 고민하시는 분들이 많은데, 결론부터 말하면 대부분의 경우 윈도우에 기본 내장된 "Microsoft Defender(윈도우 디펜더)"만으로 충분합니다.' },
       { type: 'paragraph', text: '보안 프로그램을 전문적으로 평가하는 AV-TEST 기관 테스트에서 윈도우 디펜더는 보호·성능·사용성 세 항목 모두 6점 만점에 가까운 점수를 꾸준히 받고 있고, AV-Comparatives 테스트에서도 악성코드 탐지율 99% 이상으로 유료 백신 프로그램들과 대등한 수준입니다. 상위권 백신들끼리의 차이는 이제 "탐지율"보다 "오탐(정상 파일을 바이러스로 착각하는 것)"이나 "시스템 부담" 쪽에서 갈리는 수준입니다.' },
@@ -249,7 +286,7 @@ export const tips = [
     category: 'misc-tips',
     title: '와이파이·인터넷 느릴 때 공유기 체크리스트',
     summary: '속도가 이상하게 느리다면 PC보다 공유기(라우터) 문제인 경우도 많습니다. 순서대로만 확인해보세요.',
-    thumbnail: placeholderThumb(0),
+    thumbnail: placeholderThumb(6, '와이파이·인터넷 느릴 때 공유기 체크리스트'),
     body: [
       { type: 'paragraph', text: '인터넷이 유난히 느리거나 자주 끊긴다면, PC보다 공유기(라우터) 쪽 문제인 경우도 많습니다. 아래 순서대로 하나씩 확인해보세요.' },
       { type: 'paragraph', text: '① 가장 먼저, 공유기를 재부팅하세요.' },
