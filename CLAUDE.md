@@ -38,7 +38,7 @@
 
 ### 주요 설계 결정 (요약 — 전체는 스펙 문서 참고)
 
-- 페이지 구조: 단일 HTML 셸 + 해시 라우팅(`#/`, `#/category/:id`, `#/tip/:id`) — **단, 해시 라우팅은 검색엔진이 개별 팁 페이지를 별도 URL로 색인하지 못하는 한계가 있음(SEO 관련 논의 있었음, PART 1에서는 감수하기로 함)**
+- 페이지 구조: 단일 HTML 셸 + 해시 라우팅(`#/`, `#/category/:id`, `#/tip/:id`). 해시 라우팅은 검색엔진이 `#/tip/...`을 전부 같은 URL로 취급해서 개별 팁이 색인되지 않는 한계가 있어서 → **§SEO/정적 팁 페이지** 참고 (스크립트로 실제 정적 HTML을 별도 생성해서 보완함)
 - 홈/카테고리 화면: 균일 카드 그리드 (히어로 배너 없음 — 브라우저 목업 브레인스토밍에서 B안으로 확정)
 - 카테고리: 단일 레벨 목록(계층 없음), 배열이라 개수 제한 없음 — 데이터만 추가하면 코드 수정 없이 늘어남
 - 팁 본문 블록 타입 3종: `paragraph`(문단), `steps`(번호 매긴 단계 목록), `image`(스크린샷+캡션) — `render.mjs`의 `renderBlock()` 참고
@@ -47,6 +47,17 @@
 - 애드배너: 3개 슬롯(`ad-in-article`, `ad-bottom`, `ad-sidebar-sticky`)에 자리만 확보. 실제 광고 네트워크 연동은 PART 2
 
 전체 설계 근거와 세부 사항은 [`docs/superpowers/specs/2026-08-15-bboggl-recipe-frontend-design.md`](docs/superpowers/specs/2026-08-15-bboggl-recipe-frontend-design.md) 참고.
+
+### SEO / 정적 팁 페이지 (중요 — data.mjs 수정 후 잊지 말 것)
+
+해시 라우팅 SPA는 검색엔진이 개별 팁을 색인 못 하는 문제가 있어서, 팁마다 **진짜 정적 HTML 페이지**를 `scripts/generate-tip-pages.mjs`로 별도 생성해둔다.
+
+- 출력: `tip/<팁id>/index.html` (팁 개수만큼), 루트의 `sitemap.xml`, `robots.txt`
+- **`js/data.mjs`를 수정(팁 추가/수정/삭제)했으면 반드시 다시 실행**: `node scripts/generate-tip-pages.mjs`
+- 이 정적 페이지들은 완전히 독립적인 HTML이고 JS를 안 씀(메인 SPA와 별개) — 검색엔진·공유 링크용 진입점이고, 실제 앱 안에서 검색/정렬하며 둘러보는 건 여전히 기존 SPA(`index.html`, 해시 라우팅) 몫
+- `scripts/generate-tip-pages.mjs` 안의 블록 렌더링 로직은 `render.mjs`의 `renderBlock`/`renderTipDetail`을 정적 HTML용으로 다시 구현한 것 — `render.mjs`의 렌더링 방식을 바꾸면 이 스크립트도 맞춰서 고칠 것
+- `scripts/generate-tip-pages.mjs` 상단의 `BASE_URL`이 아직 `REPLACE-WITH-YOUR-GITHUB-PAGES-URL` 플레이스홀더 상태 — GitHub Pages 배포 후 실제 주소로 바꾸고 재실행해야 `sitemap.xml`/`canonical`/OG 태그가 올바르게 나옴
+- 애드센스 심사 전 아직 남은 것: 개인정보처리방침 페이지 없음, 콘텐츠 15~25편 권장(현재 7편), 실제 배포 안 됨
 
 ### 백엔드 (PART 2 — 아직 시작 안 함)
 
