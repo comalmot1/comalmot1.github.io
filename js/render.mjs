@@ -16,7 +16,7 @@ export function renderSidebar(el, categories, activeCategoryId) {
   `;
 }
 
-function tipCardHtml(tip) {
+export function tipCardHtml(tip) {
   return `
     <a class="tip-card" href="#/tip/${tip.id}">
       <img class="tip-card-thumb" src="${tip.thumbnail}" alt="${tip.title}">
@@ -30,4 +30,32 @@ function tipCardHtml(tip) {
 
 export function renderTipGrid(el, tips) {
   el.innerHTML = `<div class="tip-grid">${tips.map(tipCardHtml).join('')}</div>`;
+}
+
+export function renderTipDetail(el, tip, allTips) {
+  const related = allTips.filter((t) => t.category === tip.category && t.id !== tip.id).slice(0, 3);
+  // 스펙 7절: ad-in-article은 2~3번째 문단 "직후"에 오고, 그 뒤에 나머지 본문이 이어진 다음 ad-bottom이 온다.
+  // 더미 데이터는 문단이 3개뿐이므로 2문단 후에 자르고, 남은 1문단을 "나머지 본문"으로 둔다.
+  const beforeAd = tip.body.slice(0, 2).map((block) => `<p>${block.text}</p>`).join('');
+  const afterAd = tip.body.slice(2).map((block) => `<p>${block.text}</p>`).join('');
+
+  el.innerHTML = `
+    <article class="tip-detail">
+      <div class="tip-detail-main">
+        <h2>${tip.title}</h2>
+        <img class="tip-detail-hero" src="${tip.thumbnail}" alt="${tip.title}">
+        ${beforeAd}
+        <div class="ad-slot" id="ad-in-article">광고 영역 (in-article)</div>
+        ${afterAd}
+        <div class="ad-slot" id="ad-bottom">광고 영역 (bottom)</div>
+        <section class="related-tips">
+          <h3>관련 팁</h3>
+          <div class="tip-grid">${related.map(tipCardHtml).join('')}</div>
+        </section>
+      </div>
+      <aside class="tip-detail-aside">
+        <div class="ad-slot ad-slot-sticky" id="ad-sidebar-sticky">광고 영역 (sidebar sticky)</div>
+      </aside>
+    </article>
+  `;
 }

@@ -1,5 +1,5 @@
 import { categories, tips } from './data.mjs';
-import { renderSidebar, renderTipGrid } from './render.mjs';
+import { renderSidebar, renderTipGrid, renderTipDetail } from './render.mjs';
 import { onRouteChange, startRouter } from './router.mjs';
 
 const sidebarEl = document.getElementById('sidebar');
@@ -34,7 +34,7 @@ onRouteChange(/^\/tip\/(?<id>[^/]+)$/, ({ id }) => {
     return;
   }
   renderSidebar(sidebarEl, categories, tip.category);
-  contentEl.innerHTML = `<p>"${tip.title}" 상세 페이지 준비 중...</p>`;
+  renderTipDetail(contentEl, tip, tips);
 });
 
 startRouter();

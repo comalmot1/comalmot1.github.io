@@ -69,3 +69,23 @@
     padding: 16px;
   }
 }
+
+.tip-detail {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+.tip-detail-main {
+  flex: 1;
+  min-width: 0;
+}
+.tip-detail-aside {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .tip-detail-aside {
+    display: none;
+  }
+}
