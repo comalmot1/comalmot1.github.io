@@ -176,7 +176,7 @@ export const tips = [
     thumbnail: placeholderThumb(2, '가격이 미쳐버린 램, 용량 부족 응급처치'),
     body: [
       { type: 'paragraph', text: '램 가격이 너무 올라서 당장 추가 구매가 부담스럽다면, 먼저 소프트웨어적으로 짜낼 수 있는 만큼 짜내보세요.' },
-      { type: 'paragraph', text: '① 크롬의 메모리 절약 모드를 켜세요.' },
+      { type: 'paragraph', text: '① 크롬의 메모리 절약 기능을 켜세요.' },
       { type: 'steps', items: [
         '크롬 우측 상단 점 3개(⋮) 클릭 → 설정',
         '왼쪽 메뉴에서 "성능" 클릭',
