@@ -216,7 +216,7 @@ export const tips = [
     id: 'gamer-tips-4',
     category: 'gamer-tips',
     title: '인터넷 느릴 때 DNS 바꾸는 법',
-    summary: '브라우저만이 아니라 PC 전체가 느리다면 네트워크 어댑터에서 DNS를 직접 바꿔보세요. 1분이면 됩니다.',
+    summary: '크롬 로딩이 유독 느리다고 느껴질 때, 1분 만에 해결해보자.',
     thumbnail: placeholderThumb(3, '인터넷 느릴 때 DNS 바꾸는 법'),
     body: [
       { type: 'paragraph', text: '인터넷이 유난히 느리거나 사이트 로딩이 오래 걸린다면 DNS 서버 문제일 수 있습니다. 아래 방법은 특정 브라우저가 아니라 PC 전체 인터넷 연결에 적용됩니다.' },
