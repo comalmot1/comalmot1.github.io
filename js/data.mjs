@@ -181,7 +181,7 @@ export const tips = [
         '"다음 DNS 서버 주소 사용"을 클릭',
         '기본 설정 DNS 서버에 8.8.8.8, 보조 DNS 서버에 1.1.1.1을 입력하고 "확인" 클릭',
       ] },
-      { type: 'image', src: placeholderImage('네트워크 연결 — 이더넷 속성 > TCP/IPv4 속성 창'), caption: '네트워크 연결 — 이더넷 속성 > TCP/IPv4 속성 창' },
+      { type: 'image', src: 'images/tips/gamer4-dns.png', caption: '네트워크 연결 — 이더넷 속성 > TCP/IPv4 속성 창' },
       { type: 'paragraph', text: '8.8.8.8은 구글(Google) DNS, 1.1.1.1은 클라우드플레어(Cloudflare) DNS입니다. 둘 다 무료로 제공되는 안정적인 공용 DNS라 통신사 기본 DNS보다 응답 속도가 빠른 경우가 많아서, 별다른 설정 없이 체감 속도가 개선되는 경우가 많습니다.' },
       { type: 'paragraph', text: '보조 DNS 서버는 꼭 1.1.1.1이 아니어도 됩니다 — 구글의 보조 DNS인 8.8.4.4로 입력해도 상관없습니다.' },
     ],
