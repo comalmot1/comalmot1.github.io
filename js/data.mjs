@@ -141,7 +141,7 @@ export const tips = [
       { type: 'paragraph', text: '② 과부하가 걸리는 부품(CPU, GPU 등)의 사양 자체가 지금 하시는 게임·프로그램의 권장 사양보다 너무 부족하지는 않은지부터 확인하세요. 권장 사양보다 한참 낮다면, 아래 방법들은 참고만 하시고 근본적으로는 부품 업그레이드가 필요할 수 있습니다.' },
       { type: 'paragraph', text: '③ CPU 문제가 의심된다면 온도를 확인하세요.' },
       { type: 'steps', items: [
-        'HWMonitor(cpuid.com/softwares/hwmonitor)를 설치하고, 게임을 하거나 무거운 프로그램을 쓰는 동안 CPU 온도를 확인',
+        'HWMonitor(cpuid.com/softwares/hwmonitor.html에서 무료 다운로드)를 설치하고, 게임을 하거나 무거운 프로그램을 쓰는 동안 CPU 온도를 확인',
         '보통 80도 후반~90도를 넘어간다면 CPU 쪽 문제일 가능성이 있습니다',
         '써멀구리스를 재도포하거나, 최근에 조립했거나 직접 조립하신 경우라면 CPU 쿨러가 제대로 밀착되지 않았을 가능성도 확인해보세요',
       ] },
