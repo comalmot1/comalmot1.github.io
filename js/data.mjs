@@ -146,6 +146,7 @@ export const tips = [
         '써멀구리스를 재도포하거나, 최근에 조립했거나 직접 조립하신 경우라면 CPU 쿨러가 제대로 밀착되지 않았을 가능성도 확인해보세요',
       ] },
       { type: 'image', src: 'images/tips/gamer2-cpu-temp.png', caption: 'CPU 온도 모니터링 화면' },
+      { type: 'paragraph', text: '온도가 높다는 게 정확히 몇 도부터인지 기준이 필요하시다면, 인텔·라이젠(non-X3D)·라이젠 X3D별로 정리해둔 아래 팁을 참고하세요.', linkTipId: 'gamer-tips-6', linkText: '부품별 적정 온도 기준표 보기' },
       { type: 'paragraph', text: '④ GPU 문제가 의심된다면 마찬가지로 온도부터 확인하세요.' },
       { type: 'steps', items: [
         'HWMonitor로 그래픽카드 온도 확인',
@@ -154,6 +155,7 @@ export const tips = [
       ] },
       { type: 'paragraph', text: '다만 번거로운 조치를 하기 전에, 그래픽카드를 한번 탈거했다가 다시 꽂아보는 것도 꼭 해보세요 — 단순 접촉 불량인 경우도 은근히 많습니다.' },
       { type: 'image', src: 'images/tips/gamer2-gpu-temp.png', caption: 'GPU 온도 모니터링 화면' },
+      { type: 'paragraph', text: 'GPU도 마찬가지로 "너무 높다"의 기준이 궁금하시다면, NVIDIA·AMD별 정상 범위를 정리해둔 아래 팁을 참고하세요.', linkTipId: 'gamer-tips-6', linkText: '부품별 적정 온도 기준표 보기' },
       { type: 'paragraph', text: '⑤ RAM(메모리) 문제가 의심된다면 실제로 맞춘 사양대로 인식되고 있는지 확인하세요.' },
       { type: 'steps', items: [
         '작업 관리자 > 성능 > 메모리에서 용량이 실제 구매한 만큼 나오는지 확인',
