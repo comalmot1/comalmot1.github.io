@@ -74,8 +74,10 @@
 
 .tip-detail-hero {
   width: 100%;
+  max-width: 320px;
+  height: auto;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   display: block;
   background: var(--border);
 }
