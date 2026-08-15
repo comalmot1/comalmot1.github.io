@@ -73,7 +73,6 @@
 .tip-detail {
   display: flex;
   gap: 32px;
-  align-items: flex-start;
 }
 .tip-detail-main {
   flex: 1;
