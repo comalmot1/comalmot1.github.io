@@ -21,6 +21,7 @@ function placeholderImage(caption) {
 
 export const categories = [
   { id: 'gamer-tips', name: '팁 for 게이머', icon: 'bolt' },
+  { id: 'misc-tips', name: '소소한 팁/정보', icon: 'bolt' },
 ];
 
 export const tips = [
@@ -217,8 +218,8 @@ export const tips = [
     date: '2026-08-12',
   },
   {
-    id: 'gamer-tips-6',
-    category: 'gamer-tips',
+    id: 'misc-tips-1',
+    category: 'misc-tips',
     title: '백신 프로그램, 굳이 따로 안 깔아도 되는 이유',
     summary: '윈도우에 기본 내장된 Microsoft Defender만으로 충분한 이유와, 오히려 다른 백신이 불편할 수 있는 이유.',
     thumbnail: placeholderThumb(5),
@@ -244,8 +245,8 @@ export const tips = [
     date: '2026-08-16',
   },
   {
-    id: 'gamer-tips-7',
-    category: 'gamer-tips',
+    id: 'misc-tips-2',
+    category: 'misc-tips',
     title: '와이파이·인터넷 느릴 때 공유기 체크리스트',
     summary: '속도가 이상하게 느리다면 PC보다 공유기(라우터) 문제인 경우도 많습니다. 순서대로만 확인해보세요.',
     thumbnail: placeholderThumb(0),
