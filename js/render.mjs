@@ -15,3 +15,19 @@ export function renderSidebar(el, categories, activeCategoryId) {
     </nav>
   `;
 }
+
+function tipCardHtml(tip) {
+  return `
+    <a class="tip-card" href="#/tip/${tip.id}">
+      <img class="tip-card-thumb" src="${tip.thumbnail}" alt="${tip.title}">
+      <div class="tip-card-body">
+        <h3>${tip.title}</h3>
+        <p>${tip.summary}</p>
+      </div>
+    </a>
+  `;
+}
+
+export function renderTipGrid(el, tips) {
+  el.innerHTML = `<div class="tip-grid">${tips.map(tipCardHtml).join('')}</div>`;
+}
