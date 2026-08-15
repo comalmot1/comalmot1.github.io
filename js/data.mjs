@@ -256,7 +256,7 @@ export const tips = [
       { type: 'code', text: 'Invoke-WebRequest https://raw.githubusercontent.com/Falcosc/enable-loudness-equalisation/main/EnableLoudness.ps1 -OutFile $env:HOMEPATH\\EnableLoudness.ps1\n\nSet-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser\n\n. $env:HOMEPATH\\EnableLoudness.ps1' },
       { type: 'steps', items: [
         '실행 권한을 부여할지 물어보면 y 입력 후 엔터',
-        '이어서 사운드 장치 이름을 입력하라고 나오면, 본인이 쓰는 출력 장치 이름을 정확히 입력 후 엔터 (예: "Realtek USB2.0 Audio")',
+        '이어서 사운드 장치 이름을 입력하라고 나오면, 본인이 쓰는 출력 장치 이름을 정확히 입력 후 엔터 (예: Realtek USB2.0 Audio) (경험상 대소문자, 띄어쓰기 지켜야 했던 것 같아요)',
       ] },
       { type: 'paragraph', text: '장치 이름은 설정 > 시스템 > 소리에서 현재 사용 중인 출력 장치 이름을 그대로 복사해서 쓰면 정확합니다.' },
       { type: 'callout', text: 'FPS 게임이나 음악 감상용으로 이어폰을 사용하시는데, 적은 돈이라도 투자해볼 의향이 있으신 분이 계시다면 \'DAC 꼬다리\'라고 검색하셔서 1만 원 근처 제품을 사용해보시는 걸 추천합니다. 조금만 알아보셔서 괜찮은 칩이 들어간 걸로 사용해보세요. 아마 쓰기 전으로는 돌아가기 힘드실걸요?' },
