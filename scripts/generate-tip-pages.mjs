@@ -36,7 +36,13 @@ function renderBlock(block) {
     return `<ol class="tip-steps">${block.items.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>`;
   }
   if (block.type === 'image') {
-    return `<figure class="tip-figure"><img src="../../${block.src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
+    // block.src is either a data: URI (generated placeholder, used as-is) or a
+    // relative path like images/tips/foo.png (needs ../../ since pages live 2 levels deep).
+    const src = block.src.startsWith('data:') ? block.src : `../../${block.src}`;
+    return `<figure class="tip-figure"><img src="${src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
+  }
+  if (block.type === 'code') {
+    return `<pre class="tip-code">${esc(block.text)}</pre>`;
   }
   return `<p>${esc(block.text)}</p>`;
 }

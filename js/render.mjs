@@ -44,6 +44,9 @@ function renderBlock(block) {
   if (block.type === 'image') {
     return `<figure class="tip-figure"><img src="${block.src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
   }
+  if (block.type === 'code') {
+    return `<pre class="tip-code">${esc(block.text)}</pre>`;
+  }
   return `<p>${esc(block.text)}</p>`;
 }
 

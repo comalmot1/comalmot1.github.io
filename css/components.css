@@ -179,3 +179,18 @@
   margin-top: 6px;
   text-align: center;
 }
+
+.tip-code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 0 0 16px;
+  font-family: 'Consolas', 'SFMono-Regular', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: all;
+}

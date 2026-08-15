@@ -243,9 +243,10 @@ export const tips = [
       { type: 'steps', items: [
         '윈도우 하단 검색(돋보기) 버튼을 누르고 "Windows PowerShell" 입력',
         '검색 결과에서 마우스 우클릭 → "관리자 권한으로 실행" 클릭',
-        '아래 3줄을 한 줄씩 순서대로 복사해서 붙여넣고, 매 줄마다 엔터: Invoke-WebRequest https://raw.githubusercontent.com/Falcosc/enable-loudness-equalisation/main/EnableLoudness.ps1 -OutFile $env:HOMEPATH\\EnableLoudness.ps1',
-        'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser',
-        '. $env:HOMEPATH\\EnableLoudness.ps1',
+      ] },
+      { type: 'paragraph', text: '아래 3줄을 통째로 드래그해서 복사한 뒤, PowerShell 창에 붙여넣고 엔터를 누르세요 (클릭 한 번으로 전체 선택됩니다).' },
+      { type: 'code', text: 'Invoke-WebRequest https://raw.githubusercontent.com/Falcosc/enable-loudness-equalisation/main/EnableLoudness.ps1 -OutFile $env:HOMEPATH\\EnableLoudness.ps1\n\nSet-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser\n\n. $env:HOMEPATH\\EnableLoudness.ps1' },
+      { type: 'steps', items: [
         '실행 권한을 부여할지 물어보면 y 입력 후 엔터',
         '이어서 사운드 장치 이름을 입력하라고 나오면, 본인이 쓰는 출력 장치 이름을 정확히 입력 후 엔터 (예: "Realtek USB2.0 Audio")',
       ] },
