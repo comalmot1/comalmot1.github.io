@@ -70,8 +70,8 @@ onRouteChange(/^\/tip\/(?<id>[^/]+)$/, ({ id }) => {
 });
 
 searchInput.addEventListener('input', debounce(() => {
-  if (/^#\/tip\//.test(location.hash)) return;
   searchState.keyword = searchInput.value;
+  if (/^#\/tip\//.test(location.hash)) return;
   showGrid(currentCategoryId);
 }, 250));
 

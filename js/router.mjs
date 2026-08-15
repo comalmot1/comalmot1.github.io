@@ -16,6 +16,7 @@ function dispatch() {
     const match = path.match(pattern);
     if (match) {
       handler(match.groups || {});
+      window.scrollTo(0, 0);
       return;
     }
   }
