@@ -49,6 +49,9 @@ function renderBlock(block) {
     const body = block.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join('')}</tr>`).join('');
     return `<div class="tip-table-wrap"><table class="tip-table"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
   }
+  if (block.type === 'callout') {
+    return `<div class="tip-callout"><span class="tip-callout-icon">💡</span><p>${esc(block.text)}</p></div>`;
+  }
   if (block.linkTipId) {
     return `<p>${esc(block.text)} <a href="../${esc(block.linkTipId)}/">${esc(block.linkText || '자세히 보기')}</a></p>`;
   }
