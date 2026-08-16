@@ -215,11 +215,11 @@ export const tips = [
     date: '2026-08-12',
   },
   {
-    id: 'gamer-tips-4',
-    category: 'gamer-tips',
-    title: '인터넷 느릴 때 DNS 바꾸는 법',
+    id: 'misc-tips-4',
+    category: 'misc-tips',
+    title: '크롬 로딩 느릴 때 간단한 해결법',
     summary: '크롬 로딩이 유독 느리다고 느껴질 때, 1분 만에 해결해보자.',
-    thumbnail: placeholderThumb(3, '인터넷 느릴 때 DNS 바꾸는 법'),
+    thumbnail: placeholderThumb(3, '크롬 로딩 느릴 때 간단한 해결법'),
     body: [
       { type: 'paragraph', text: '혹시 크롬으로 사이트에 들어갈 때마다 로딩이 유독 오래 걸리거나 페이지가 자꾸 버벅이는 느낌이 드시나요? 그렇다면 DNS 서버를 바꿔보는 게 도움이 될 거예요.' },
       { type: 'paragraph', text: '아래 방법은 특정 브라우저가 아니라 PC 전체 인터넷 연결에 적용됩니다.' },
