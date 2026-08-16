@@ -101,6 +101,8 @@ function pageHtml(tip) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9428123956558962"
+     crossorigin="anonymous"></script>
   <title>${esc(tip.title)} — for 컴알못</title>
   <meta name="description" content="${esc(tip.summary)}">
   <link rel="canonical" href="${BASE_URL}/tip/${tip.id}/">
