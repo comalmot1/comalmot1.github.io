@@ -62,7 +62,7 @@
 - 애드센스 심사 준비 상태 (2026-08-16 기준):
   - ✅ 개인정보처리방침(`privacy-policy.html`)·사이트 소개/문의(`about.html`) 페이지 추가됨 — 둘 다 루트의 독립 정적 HTML, SPA 사이드바(`renderSidebar` in `render.mjs`)와 정적 팁 페이지 사이드바(`sidebarHtml` in `generate-tip-pages.mjs`) 양쪽 하단에 `sidebar-footer`로 링크되어 있고 `sitemap.xml`에도 포함됨. 이 두 파일도 새 페이지 추가 시 마찬가지로 유지보수 필요
   - ✅ 실제 배포 완료
-  - ⚠️ 두 페이지의 문의처는 `[문의 이메일 준비중]` 플레이스홀더 — 실제 공개할 이메일이 정해지면 두 파일 모두에서 바꿔야 함
+  - ✅ 문의 이메일 확정 및 반영됨 (`rteru123@naver.com`, `about.html`·`privacy-policy.html` 양쪽)
   - ⚠️ 콘텐츠 10편 (권장 15~25편에는 아직 못 미침 — 개수를 늘릴지, 이대로 심사 넣을지는 사용자 판단 필요)
 
 ### 백엔드 (PART 2 — 아직 시작 안 함)
