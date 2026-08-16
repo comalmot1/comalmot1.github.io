@@ -66,6 +66,7 @@
   - ✅ 문의 이메일 확정 및 반영됨 (`rteru123@naver.com`, `about.html`·`privacy-policy.html` 양쪽)
   - ✅ 애드센스 연결 코드(`ca-pub-9428123956558962`, adsbygoogle.js) 모든 페이지 `<head>`에 삽입됨 — `index.html`, `about.html`, `privacy-policy.html`, `generate-tip-pages.mjs`의 `pageHtml()` 템플릿(모든 팁 정적 페이지) 전부 반영
   - **저장소를 `for-comalmot` → `comalmot1.github.io`로 개명(2026-08-16)** — 원래 `/for-comalmot/` 하위 경로에 있었는데, 애드센스 사이트 소유권 확인이 등록 도메인 루트(`comalmot1.github.io/`, 경로 없음)에서 코드를 찾다가 실패함(그 경로는 404였음). GitHub Pages는 저장소 이름이 정확히 `<계정명>.github.io`면 루트에서 서빙하는 특수 규칙이 있어서, 개명으로 해결함. 이후 `BASE_URL`도 경로 없이 `https://comalmot1.github.io`로 수정.
+  - ✅ `ads.txt` 루트에 추가됨 (`google.com, pub-9428123956558962, DIRECT, f08c47fec0942fa0`) — 사이트가 진짜 루트(`comalmot1.github.io/`)로 옮겨진 뒤에야 배치 가능해짐
   - ⚠️ 콘텐츠 10편 (권장 15~25편에는 아직 못 미침 — 개수를 늘릴지, 이대로 심사 넣을지는 사용자 판단 필요)
 
 ### 백엔드 (PART 2 — 아직 시작 안 함)
