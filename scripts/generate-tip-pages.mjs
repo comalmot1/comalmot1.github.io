@@ -82,6 +82,10 @@ function sidebarHtml(activeCategoryId) {
         </a>
       `).join('')}
     </nav>
+    <div class="sidebar-footer">
+      <a href="../../about.html">사이트 소개·문의</a>
+      <a href="../../privacy-policy.html">개인정보처리방침</a>
+    </div>
   `;
 }
 
@@ -139,7 +143,12 @@ function pageHtml(tip) {
 }
 
 function sitemapXml() {
-  const urls = [BASE_URL + '/', ...tips.map((t) => `${BASE_URL}/tip/${t.id}/`)];
+  const urls = [
+    BASE_URL + '/',
+    BASE_URL + '/about.html',
+    BASE_URL + '/privacy-policy.html',
+    ...tips.map((t) => `${BASE_URL}/tip/${t.id}/`),
+  ];
   const entries = urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
 }

@@ -57,7 +57,11 @@
 - 이 정적 페이지들은 완전히 독립적인 HTML이고 JS를 안 씀(메인 SPA와 별개) — 검색엔진·공유 링크용 진입점이고, 실제 앱 안에서 검색/정렬하며 둘러보는 건 여전히 기존 SPA(`index.html`, 해시 라우팅) 몫
 - `scripts/generate-tip-pages.mjs` 안의 블록 렌더링 로직은 `render.mjs`의 `renderBlock`/`renderTipDetail`을 정적 HTML용으로 다시 구현한 것 — `render.mjs`의 렌더링 방식을 바꾸면 이 스크립트도 맞춰서 고칠 것
 - `scripts/generate-tip-pages.mjs` 상단의 `BASE_URL`이 아직 `REPLACE-WITH-YOUR-GITHUB-PAGES-URL` 플레이스홀더 상태 — GitHub Pages 배포 후 실제 주소로 바꾸고 재실행해야 `sitemap.xml`/`canonical`/OG 태그가 올바르게 나옴
-- 애드센스 심사 전 아직 남은 것: 개인정보처리방침 페이지 없음, 콘텐츠 15~25편 권장(현재 7편), 실제 배포 안 됨
+- 애드센스 심사 준비 상태 (2026-08-16 기준):
+  - ✅ 개인정보처리방침(`privacy-policy.html`)·사이트 소개/문의(`about.html`) 페이지 추가됨 — 둘 다 루트의 독립 정적 HTML, SPA 사이드바(`renderSidebar` in `render.mjs`)와 정적 팁 페이지 사이드바(`sidebarHtml` in `generate-tip-pages.mjs`) 양쪽 하단에 `sidebar-footer`로 링크되어 있고 `sitemap.xml`에도 포함됨. 이 두 파일도 새 페이지 추가 시 마찬가지로 유지보수 필요
+  - ⚠️ 두 페이지의 문의처는 `[문의 이메일 준비중]` 플레이스홀더 — 실제 공개할 이메일이 정해지면 두 파일 모두에서 바꿔야 함
+  - ⚠️ 콘텐츠 10편 (권장 15~25편에는 아직 못 미침 — 개수를 늘릴지, 이대로 심사 넣을지는 사용자 판단 필요)
+  - ⚠️ 실제 배포 안 됨 — GitHub 계정 생성부터 필요 (계정 생성은 Claude가 대신 할 수 없는 작업), 저장소 생성·push·Pages 활성화 후 `BASE_URL` 교체 + `generate-tip-pages.mjs` 재실행 필요
 
 ### 백엔드 (PART 2 — 아직 시작 안 함)
 

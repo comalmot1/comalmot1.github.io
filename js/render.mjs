@@ -18,6 +18,10 @@ export function renderSidebar(el, categories, activeCategoryId) {
         </a>
       `).join('')}
     </nav>
+    <div class="sidebar-footer">
+      <a href="about.html">사이트 소개·문의</a>
+      <a href="privacy-policy.html">개인정보처리방침</a>
+    </div>
   `;
 }
 
