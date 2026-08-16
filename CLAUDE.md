@@ -22,7 +22,7 @@
 - **구조:** PART 1(프론트엔드) 우선 완성, 백엔드 필요 기능이 생기면 PART 2로 진행. 지금은 PART 1만 진행 중 — 콘텐츠(텍스트·실제 스크린샷)를 계속 채우는 단계.
 - **개발 서버:** 없음. ES 모듈이라 `file://`로는 안 열림 — 반드시 `npx http-server . -p <포트> -c-1` 같은 로컬 정적 서버로 확인 (Node는 winget으로 설치되어 있음, PATH는 §1 참고).
 - **빌드/테스트:** 빌드 없음. `node --check js/*.mjs`로 문법 검증, 나머지는 브라우저 수동 확인 (자동화 테스트 스위트 없음). 로컬 dev 서버 브라우저 캐시가 종종 완고하게 이전 버전을 물고 있으니, 확인이 이상하면 새 포트로 재시작하거나 `fetch(...+'?v='+Date.now())`로 캐시 우회해서 재확인할 것.
-- **배포:** GitHub Pages로 진행하기로 확정 (저장소는 Public 필요, 아직 push 전). 해시 라우팅(`#/...`)이라 404.html 우회 작업 불필요. Vercel 등 다른 경로는 `docs/backend-setup-guide.md` 참고용으로만 남겨둠.
+- **배포:** GitHub Pages로 실제 배포 완료 — **https://rteru123-stack.github.io/for-comalmot/** (저장소 `rteru123-stack/for-comalmot`, Public, `main` 브랜치). 해시 라우팅(`#/...`)이라 404.html 우회 작업 불필요. Vercel 등 다른 경로는 `docs/backend-setup-guide.md` 참고용으로만 남겨둠. 배포 관련 세부사항(push 방법 등)은 §SEO/정적 팁 페이지 하단 참고.
 - **콘텐츠 이미지:** 실제 스크린샷은 사용자가 직접 캡처해서 `images/tips/`에 저장 — Claude는 대화창에 붙여넣은 이미지를 파일로 직접 저장할 수 없으므로, 파일명을 정해서 알려주고 사용자가 저장하면 확인 후 코드에 연결하는 방식으로 진행. 아직 없는 이미지는 `placeholderImage()`가 만드는 "스크린샷 준비중" 플레이스홀더로 대체됨(깨진 이미지 아님, 정상 동작).
 
 ### 디자인 시스템 (정확히 준수)
@@ -57,11 +57,11 @@
 - 이 정적 페이지들은 완전히 독립적인 HTML이고 JS를 안 씀(메인 SPA와 별개) — 검색엔진·공유 링크용 진입점이고, 실제 앱 안에서 검색/정렬하며 둘러보는 건 여전히 기존 SPA(`index.html`, 해시 라우팅) 몫
 - `scripts/generate-tip-pages.mjs` 안의 블록 렌더링 로직은 `render.mjs`의 `renderBlock`/`renderTipDetail`을 정적 HTML용으로 다시 구현한 것 — `render.mjs`의 렌더링 방식을 바꾸면 이 스크립트도 맞춰서 고칠 것
 - `scripts/generate-tip-pages.mjs` 상단의 `BASE_URL` = `https://rteru123-stack.github.io/for-comalmot` (2026-08-16 확정, GitHub Pages 실제 주소)
-- **배포 상태 (2026-08-16):** GitHub 저장소 `rteru123-stack/for-comalmot` (Public) 생성 완료, `main` 브랜치로 로컬 `master`를 push 완료 (`git remote`: origin). Git push는 반드시 **사용자가 본인 PowerShell/터미널에서 직접 실행** — 이 세션의 Bash 도구(샌드박스)에서는 GitHub 로그인 인증 팝업(Git Credential Manager)이 사용자 화면까지 도달하지 못해 계속 멈춤(hang). 앞으로 push가 필요하면 항상 이 방식으로 사용자에게 명령어를 안내할 것.
-- GitHub Pages 활성화 여부는 아직 미확인 — 저장소 Settings > Pages에서 "Deploy from a branch" / `main` / `/(root)`로 설정 필요 (사용자가 웹에서 직접, 계정 로그인 필요한 작업)
+- **배포 완료 (2026-08-16):** 사이트가 실제로 떠 있음 → **https://rteru123-stack.github.io/for-comalmot/**. GitHub 저장소 `rteru123-stack/for-comalmot` (Public), 로컬 브랜치는 `main`으로 개명 완료(과거 `master` 아님), `git remote`: origin, GitHub Pages "Deploy from a branch" / `main` / `/(root)`로 활성화됨.
+- **Git push는 반드시 사용자가 본인 PowerShell/터미널에서 직접 실행** — 이 세션의 Bash 도구(샌드박스)에서는 GitHub 로그인 인증 팝업(Git Credential Manager)이 사용자 화면까지 도달하지 못해 계속 멈춤(hang). 앞으로 push가 필요하면 항상 정확한 명령어(`cd` 경로 + `git push`)를 사용자에게 안내하고, 실행 결과(성공/에러 메시지)를 다시 물어볼 것 — "했어"라는 답만으로 성공을 가정하지 말고 GitHub API로 커밋 SHA를 대조해서 확인할 것 (raw.githubusercontent.com은 CDN 캐시가 있어 몇 분 지연될 수 있으니, 확인은 `api.github.com/repos/.../commits/main`이나 `api.github.com/repos/.../contents/<path>`로 할 것).
 - 애드센스 심사 준비 상태 (2026-08-16 기준):
   - ✅ 개인정보처리방침(`privacy-policy.html`)·사이트 소개/문의(`about.html`) 페이지 추가됨 — 둘 다 루트의 독립 정적 HTML, SPA 사이드바(`renderSidebar` in `render.mjs`)와 정적 팁 페이지 사이드바(`sidebarHtml` in `generate-tip-pages.mjs`) 양쪽 하단에 `sidebar-footer`로 링크되어 있고 `sitemap.xml`에도 포함됨. 이 두 파일도 새 페이지 추가 시 마찬가지로 유지보수 필요
-  - ✅ 실제 배포(GitHub Pages) 진행 중 — 저장소·push 완료, Pages 활성화만 남음
+  - ✅ 실제 배포 완료
   - ⚠️ 두 페이지의 문의처는 `[문의 이메일 준비중]` 플레이스홀더 — 실제 공개할 이메일이 정해지면 두 파일 모두에서 바꿔야 함
   - ⚠️ 콘텐츠 10편 (권장 15~25편에는 아직 못 미침 — 개수를 늘릴지, 이대로 심사 넣을지는 사용자 판단 필요)
 
