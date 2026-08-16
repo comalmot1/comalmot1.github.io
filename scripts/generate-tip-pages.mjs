@@ -139,6 +139,7 @@ function pageHtml(tip) {
       </article>
     </main>
   </div>
+  <div class="ad-slot side-rail-ad">광고 영역 (사이드레일)</div>
 </body>
 </html>
 `;
