@@ -13,7 +13,7 @@
 //
 // 배포 도메인이 정해지면 아래 BASE_URL을 실제 GitHub Pages 주소로 바꾸고
 // 다시 실행할 것 (sitemap.xml의 URL이 이 값을 기준으로 만들어진다).
-const BASE_URL = 'https://comalmot1.github.io/for-comalmot';
+const BASE_URL = 'https://comalmot1.github.io';
 
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

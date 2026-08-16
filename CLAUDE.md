@@ -11,6 +11,7 @@
 - 셸: PowerShell (기본). Bash 도구도 병행 가능하지만 POSIX 문법 사용
 - Node.js: 이 세션 중 winget으로 설치됨 (LTS 24.19.0). 새 Bash 세션은 PATH가 갱신되지 않을 수 있어 `export PATH="/c/Program Files/nodejs:$PATH"`가 필요할 수 있음
 - git: 이 저장소 전용 로컬 identity 설정됨 (`git config --local user.name/user.email`, 전역 설정 아님)
+- **프로젝트 경로: `C:\projects\for-comalmot`** (2026-08-16, OneDrive 경로 `...\OneDrive\ドキュメント\구매대행\for-comalmot`에서 이전됨 — OneDrive 동기화가 `.git` 내부 파일을 잠가서 git 작업을 방해할 수 있어서 이전. 로컬 http-server 등 이 폴더 안의 파일을 여는 프로세스는 작업 끝나면 꼭 종료할 것 — 켜둔 채로 두면 나중에 폴더 이동/삭제 시 파일 잠금 문제가 생김)
 
 ---
 
@@ -22,7 +23,7 @@
 - **구조:** PART 1(프론트엔드) 우선 완성, 백엔드 필요 기능이 생기면 PART 2로 진행. 지금은 PART 1만 진행 중 — 콘텐츠(텍스트·실제 스크린샷)를 계속 채우는 단계.
 - **개발 서버:** 없음. ES 모듈이라 `file://`로는 안 열림 — 반드시 `npx http-server . -p <포트> -c-1` 같은 로컬 정적 서버로 확인 (Node는 winget으로 설치되어 있음, PATH는 §1 참고).
 - **빌드/테스트:** 빌드 없음. `node --check js/*.mjs`로 문법 검증, 나머지는 브라우저 수동 확인 (자동화 테스트 스위트 없음). 로컬 dev 서버 브라우저 캐시가 종종 완고하게 이전 버전을 물고 있으니, 확인이 이상하면 새 포트로 재시작하거나 `fetch(...+'?v='+Date.now())`로 캐시 우회해서 재확인할 것.
-- **배포:** GitHub Pages로 실제 배포 완료 — **https://comalmot1.github.io/for-comalmot/** (저장소 `comalmot1/for-comalmot`, Public, `main` 브랜치). 해시 라우팅(`#/...`)이라 404.html 우회 작업 불필요. Vercel 등 다른 경로는 `docs/backend-setup-guide.md` 참고용으로만 남겨둠. 배포 관련 세부사항(push 방법 등)은 §SEO/정적 팁 페이지 하단 참고.
+- **배포:** GitHub Pages로 실제 배포 완료 — **https://comalmot1.github.io/** (저장소 `comalmot1/comalmot1.github.io`, Public, `main` 브랜치). 해시 라우팅(`#/...`)이라 404.html 우회 작업 불필요. Vercel 등 다른 경로는 `docs/backend-setup-guide.md` 참고용으로만 남겨둠. 배포 관련 세부사항(push 방법 등)은 §SEO/정적 팁 페이지 하단 참고.
 - **콘텐츠 이미지:** 실제 스크린샷은 사용자가 직접 캡처해서 `images/tips/`에 저장 — Claude는 대화창에 붙여넣은 이미지를 파일로 직접 저장할 수 없으므로, 파일명을 정해서 알려주고 사용자가 저장하면 확인 후 코드에 연결하는 방식으로 진행. 아직 없는 이미지는 `placeholderImage()`가 만드는 "스크린샷 준비중" 플레이스홀더로 대체됨(깨진 이미지 아님, 정상 동작).
 
 ### 디자인 시스템 (정확히 준수)
@@ -56,13 +57,15 @@
 - **`js/data.mjs`를 수정(팁 추가/수정/삭제)했으면 반드시 다시 실행**: `node scripts/generate-tip-pages.mjs`
 - 이 정적 페이지들은 완전히 독립적인 HTML이고 JS를 안 씀(메인 SPA와 별개) — 검색엔진·공유 링크용 진입점이고, 실제 앱 안에서 검색/정렬하며 둘러보는 건 여전히 기존 SPA(`index.html`, 해시 라우팅) 몫
 - `scripts/generate-tip-pages.mjs` 안의 블록 렌더링 로직은 `render.mjs`의 `renderBlock`/`renderTipDetail`을 정적 HTML용으로 다시 구현한 것 — `render.mjs`의 렌더링 방식을 바꾸면 이 스크립트도 맞춰서 고칠 것
-- `scripts/generate-tip-pages.mjs` 상단의 `BASE_URL` = `https://comalmot1.github.io/for-comalmot` (2026-08-16 확정, GitHub Pages 실제 주소)
-- **배포 완료 (2026-08-16):** 사이트가 실제로 떠 있음 → **https://comalmot1.github.io/for-comalmot/**. GitHub 저장소 `comalmot1/for-comalmot` (Public), 로컬 브랜치는 `main`으로 개명 완료(과거 `master` 아님), `git remote`: origin, GitHub Pages "Deploy from a branch" / `main` / `/(root)`로 활성화됨.
+- `scripts/generate-tip-pages.mjs` 상단의 `BASE_URL` = `https://comalmot1.github.io` (2026-08-16 확정, GitHub Pages 실제 주소)
+- **배포 완료 (2026-08-16):** 사이트가 실제로 떠 있음 → **https://comalmot1.github.io/**. GitHub 저장소 `comalmot1/comalmot1.github.io` (Public), 로컬 브랜치는 `main`으로 개명 완료(과거 `master` 아님), `git remote`: origin, GitHub Pages "Deploy from a branch" / `main` / `/(root)`로 활성화됨.
 - **Git push는 반드시 사용자가 본인 PowerShell/터미널에서 직접 실행** — 이 세션의 Bash 도구(샌드박스)에서는 GitHub 로그인 인증 팝업(Git Credential Manager)이 사용자 화면까지 도달하지 못해 계속 멈춤(hang). 앞으로 push가 필요하면 항상 정확한 명령어(`cd` 경로 + `git push`)를 사용자에게 안내하고, 실행 결과(성공/에러 메시지)를 다시 물어볼 것 — "했어"라는 답만으로 성공을 가정하지 말고 GitHub API로 커밋 SHA를 대조해서 확인할 것 (raw.githubusercontent.com은 CDN 캐시가 있어 몇 분 지연될 수 있으니, 확인은 `api.github.com/repos/.../commits/main`이나 `api.github.com/repos/.../contents/<path>`로 할 것).
 - 애드센스 심사 준비 상태 (2026-08-16 기준):
   - ✅ 개인정보처리방침(`privacy-policy.html`)·사이트 소개/문의(`about.html`) 페이지 추가됨 — 둘 다 루트의 독립 정적 HTML, SPA 사이드바(`renderSidebar` in `render.mjs`)와 정적 팁 페이지 사이드바(`sidebarHtml` in `generate-tip-pages.mjs`) 양쪽 하단에 `sidebar-footer`로 링크되어 있고 `sitemap.xml`에도 포함됨. 이 두 파일도 새 페이지 추가 시 마찬가지로 유지보수 필요
   - ✅ 실제 배포 완료
   - ✅ 문의 이메일 확정 및 반영됨 (`rteru123@naver.com`, `about.html`·`privacy-policy.html` 양쪽)
+  - ✅ 애드센스 연결 코드(`ca-pub-9428123956558962`, adsbygoogle.js) 모든 페이지 `<head>`에 삽입됨 — `index.html`, `about.html`, `privacy-policy.html`, `generate-tip-pages.mjs`의 `pageHtml()` 템플릿(모든 팁 정적 페이지) 전부 반영
+  - **저장소를 `for-comalmot` → `comalmot1.github.io`로 개명(2026-08-16)** — 원래 `/for-comalmot/` 하위 경로에 있었는데, 애드센스 사이트 소유권 확인이 등록 도메인 루트(`comalmot1.github.io/`, 경로 없음)에서 코드를 찾다가 실패함(그 경로는 404였음). GitHub Pages는 저장소 이름이 정확히 `<계정명>.github.io`면 루트에서 서빙하는 특수 규칙이 있어서, 개명으로 해결함. 이후 `BASE_URL`도 경로 없이 `https://comalmot1.github.io`로 수정.
   - ⚠️ 콘텐츠 10편 (권장 15~25편에는 아직 못 미침 — 개수를 늘릴지, 이대로 심사 넣을지는 사용자 판단 필요)
 
 ### 백엔드 (PART 2 — 아직 시작 안 함)
