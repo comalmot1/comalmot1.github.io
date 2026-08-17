@@ -65,9 +65,9 @@ export const tips = [
   {
     id: 'gamer-tips-1',
     category: 'gamer-tips',
-    title: '게임 시작 전 PC 설정 총집합',
+    title: '따라하기만 하면 되는 윈도우 최적화',
     summary: '게임을 켜기 전에 딱 한 번만 점검해두면 계속 도움이 되는 드라이버·윈도우 설정 체크리스트.',
-    thumbnail: placeholderThumb(0, '게임 시작 전 PC 설정 총집합'),
+    thumbnail: placeholderThumb(0, '따라하기만 하면 되는 윈도우 최적화'),
     body: [
       { type: 'paragraph', text: '혹시 새 PC를 사셨거나 포맷을 새로 하셨는데 게임 성능을 최대로 끌어내려면 뭘 확인해야 하는지 감이 안 잡히시나요? 아니면 지금까지 한 번도 이런 설정을 안 만져봐서 혹시 놓친 게 있는 건 아닐까 싶으신가요? 그렇다면 이 체크리스트가 도움이 될 거예요.' },
       { type: 'paragraph', text: '게임을 시작하기 전에 딱 한 번만 점검해두면 계속 도움이 되는 설정들을 모았습니다. 무슨 뜻인지 몰라도 괜찮으니, 아래 순서대로 그대로 따라오시면 됩니다.' },
