@@ -39,7 +39,12 @@ function renderBlock(block) {
     // block.src is either a data: URI (generated placeholder, used as-is) or a
     // relative path like images/tips/foo.png (needs ../../ since pages live 2 levels deep).
     const src = block.src.startsWith('data:') ? block.src : `../../${block.src}`;
-    return `<figure class="tip-figure"><img src="${src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
+    // Static pages carry no JS, so the click-to-enlarge lightbox is pure CSS via
+    // the :target pseudo-class (see .lightbox-overlay in components.css) — not
+    // the same mechanism as render.mjs's JS-driven version, since these pages
+    // must stay usable with zero JavaScript.
+    const lightboxId = `lightbox-${block.src.replace(/[^a-zA-Z0-9]/g, '-')}`;
+    return `<figure class="tip-figure"><a href="#${lightboxId}" class="tip-figure-link"><img src="${src}" alt="${esc(block.caption || '')}"></a><figcaption>${esc(block.caption || '')}</figcaption></figure><div class="lightbox-overlay" id="${lightboxId}"><a href="#" class="lightbox-inner" aria-label="이미지 닫기"><img src="${src}" alt="${esc(block.caption || '')}"></a></div>`;
   }
   if (block.type === 'code') {
     return `<pre class="tip-code">${esc(block.text)}</pre>`;

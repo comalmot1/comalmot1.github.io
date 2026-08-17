@@ -2,6 +2,7 @@ import { categories, tips } from './data.mjs';
 import { renderSidebar, renderTipGrid, renderTipDetail, renderEmptyState } from './render.mjs';
 import { onRouteChange, startRouter } from './router.mjs';
 import { filterAndSortTips } from './search.mjs';
+import { initLightbox } from './lightbox.mjs';
 
 const sidebarEl = document.getElementById('sidebar');
 const contentEl = document.getElementById('content-area');
@@ -80,4 +81,5 @@ sortSelect.addEventListener('change', () => {
   showGrid(currentCategoryId);
 });
 
+initLightbox();
 startRouter();

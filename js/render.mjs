@@ -46,7 +46,7 @@ function renderBlock(block) {
     return `<ol class="tip-steps">${block.items.map((item) => `<li>${esc(item)}</li>`).join('')}</ol>`;
   }
   if (block.type === 'image') {
-    return `<figure class="tip-figure"><img src="${block.src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
+    return `<figure class="tip-figure"><img class="tip-figure-img" src="${block.src}" alt="${esc(block.caption || '')}"><figcaption>${esc(block.caption || '')}</figcaption></figure>`;
   }
   if (block.type === 'code') {
     return `<pre class="tip-code">${esc(block.text)}</pre>`;
